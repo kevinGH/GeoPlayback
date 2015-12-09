@@ -1,0 +1,139 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=8" />
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+
+<script language="JavaScript">
+
+var IpAddress = 0;
+var RPBExist =false;
+
+function OCXChecker()
+{	
+	try{
+		OCXChecker1.StartOCXChecker("SinglePlayerOCXChecker.txt",document.location);
+	}
+	catch(e){
+	}
+}
+
+function Init()
+{
+	setTimeout("OCXChecker()",500);
+}
+</script>
+
+<SCRIPT id="clientEventHandlersJS" language="javascript"> 
+function OCXCheckerComplete() { 
+	RPBExist=1;
+	
+	// get domain IP ,  not including "http://" or "https://" 
+	var iStart;       
+	var strIP=document.URL.substring(document.URL.indexOf("//")+2,document.URL.indexOf("/",8));          
+	       
+	// not including ":port"  
+	iStart = strIP.indexOf(":");
+	        
+	if( iStart >= 0 )
+	    strIP = strIP.substring(0,iStart);
+
+	// Login		
+} 
+</SCRIPT> 
+
+<SCRIPT id="clientEventHandlersJS" language="javascript"> 
+function OCXCheckerDownloadComplete() { 
+   window.location.reload();
+} 
+</SCRIPT> 
+
+<SCRIPT id="clientEventHandlersJS" language="javascript"> 
+function OCXCheckerDownloadCancel() { 
+   window.close();
+} 
+</SCRIPT> 
+
+<SCRIPT LANGUAGE=javascript FOR=OCXChecker1 EVENT=Complete>
+ OCXCheckerComplete()
+</SCRIPT>
+
+<SCRIPT LANGUAGE=javascript FOR=OCXChecker1 EVENT=DownloadComplete>
+ OCXCheckerDownloadComplete()
+</SCRIPT>
+
+<SCRIPT LANGUAGE=javascript FOR=OCXChecker1 EVENT=DownloadCancel>
+ OCXCheckerDownloadCancel()
+</SCRIPT>
+
+<SCRIPT id="clientEventHandlersJS" language="javascript"> 
+function RPB_LoginOK(){	
+}
+</SCRIPT> 
+
+<SCRIPT id="clientEventHandlersJS" language="javascript"> 
+function RPB_LoginFail(nStatus){	
+} 
+</SCRIPT>
+
+<SCRIPT id="clientEventHandlersJS" language="javascript"> 
+function VideoInfo(iWidth, iHeight)
+{
+	var obj = document.getElementById('GvSinglePlayer');
+	
+	if( obj ){
+		obj.style.width = iWidth + "px";
+		obj.style.height = iHeight + "px";
+		document.GvSinglePlayer.SetWndSize(0,0,0,1,iWidth,iHeight);
+	}
+}
+</SCRIPT>
+
+<SCRIPT LANGUAGE=javascript FOR=GvSinglePlayer EVENT="LoginOK">
+RPB_LoginOK()
+</SCRIPT>
+
+<SCRIPT LANGUAGE=javascript FOR=GvSinglePlayer EVENT="LoginFail(nStatus)">
+RPB_LoginFail(nStatus)
+</SCRIPT>
+
+<SCRIPT LANGUAGE=javascript FOR=GvSinglePlayer EVENT="VideoInfo( iWidth, iHeight, iReserved1, iReserved2 )">
+VideoInfo(iWidth, iHeight)
+</SCRIPT>
+
+</head>
+<body OnLoad="Init()">
+
+<object classid="clsid:ADACAA8F-3595-47fe-9C31-9C7471B9BEC7" id="OCXChecker1" width="0" height="0" codebase="cab/OCXChecker_8570.cab#version=8,5,7,0">
+	<param name="_Version" value="65536">
+	<param name="_ExtentX" value="26">
+	<param name="_ExtentY" value="26">
+	<param name="_StockProps" value="0">
+</object>
+<br>
+<br>
+<br>
+<center>
+      	<object height="360" width="600" id="GvSinglePlayer" classid="clsid:B3DA8307-568E-40FA-9415-6144C370D86B" > 
+                    <param name="_Version" value="65536">
+                    <param name="_ExtentX" value="10583">
+                    <param name="_ExtentY" value="8467">
+                    <param name="_StockProps" value="0">
+                    <param name="AutoLogin" value="0">
+                    <param name="IPAddress" value="127.0.0.1">
+                    <param name="Port" value="5552">
+                    <param name="UserID" value>
+                    <param name="Password" value>
+                    <param name="PlayMode" value="0">
+                    <param name="Modify" value="27">
+                    <param name="CachePath" value>
+                    <param name="BlueScreenFile" value>
+                    <param name="DisconnectFile" value>
+                    <param name="ShowPlayBar" value="1">
+                    <param name="ShowTreeList" value="1">
+                    <param name="TreeListPos" value="0">
+                    <param name="Sound" value="1">
+	</object>	
+</center>
+</body>
+</html>
